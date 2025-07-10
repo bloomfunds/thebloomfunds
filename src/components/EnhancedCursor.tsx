@@ -151,7 +151,7 @@ export default function EnhancedCursor({ className }: EnhancedCursorProps) {
     return () => {
       mountedRef.current = false;
       if (cleanup) cleanup();
-      if (rafId && window?.cancelAnimationFrame) {
+      if (rafId && typeof window !== 'undefined') {
         cancelAnimationFrame(rafId);
       }
       if (mediaQueryCleanup) {
