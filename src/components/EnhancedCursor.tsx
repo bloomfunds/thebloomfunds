@@ -62,7 +62,7 @@ export default function EnhancedCursor({ className }: EnhancedCursorProps) {
     }
 
     // Use requestAnimationFrame for better timing
-    let rafId: number;
+    let rafId: number | undefined;
     let mediaQueryCleanup: (() => void) | undefined;
     let initTimeout: NodeJS.Timeout;
 
