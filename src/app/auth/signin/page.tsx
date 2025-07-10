@@ -38,7 +38,7 @@ export default function SignInPage() {
         return;
       }
 
-      if (data.user) {
+      if (data && data.user) {
         router.push("/");
       }
     } catch (err) {
