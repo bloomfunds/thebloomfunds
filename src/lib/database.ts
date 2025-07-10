@@ -491,8 +491,8 @@ export async function searchCampaigns({
 
   // Sort campaigns
   filteredCampaigns.sort((a, b) => {
-    const aValue = a[sortBy as keyof Campaign];
-    const bValue = b[sortBy as keyof Campaign];
+    const aValue = a[sortBy as keyof Campaign] ?? 0;
+    const bValue = b[sortBy as keyof Campaign] ?? 0;
 
     if (sortOrder === "asc") {
       return aValue < bValue ? -1 : aValue > bValue ? 1 : 0;
