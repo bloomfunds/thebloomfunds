@@ -349,7 +349,7 @@ export default function CampaignForm() {
         const mediaData = formData.media.map((media, index) => ({
           media_type: media.type,
           media_url: media.url,
-          caption: media.caption || null,
+          caption: media.caption || undefined,
           display_order: index,
         }));
 
