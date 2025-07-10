@@ -183,7 +183,7 @@ export default function EnhancedCursor({ className }: EnhancedCursorProps) {
     }
 
     const updateCursorPosition = (e: MouseEvent) => {
-      if (!isMoving && window.requestAnimationFrame) {
+      if (!isMoving) {
         isMoving = true;
         animationFrameId = requestAnimationFrame(() => {
           setPosition({ x: e.clientX, y: e.clientY });
