@@ -554,7 +554,7 @@ export default async function CampaignPage({ params }: CampaignPageProps) {
                           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             {campaign.campaign_media
                               .sort((a: CampaignMedia, b: CampaignMedia) => a.display_order - b.display_order)
-                              .map((media) => (
+                              .map((media: CampaignMedia) => (
                                 <div key={media.id} className="space-y-3">
                                   {media.media_type === "image" ? (
                                     <img
