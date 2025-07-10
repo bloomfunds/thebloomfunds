@@ -1,7 +1,7 @@
 import React from "react";
 import { notFound } from "next/navigation";
 import { getCampaignById } from "@/lib/database";
-import { CampaignMedia } from "@/lib/supabase";
+import { CampaignMedia, RewardTier } from "@/lib/supabase";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -782,8 +782,8 @@ export default async function CampaignPage({ params }: CampaignPageProps) {
                 <CardContent className="space-y-4 max-h-[600px] overflow-y-auto">
                   {campaign.reward_tiers && campaign.reward_tiers.length > 0 ? (
                     campaign.reward_tiers
-                      .sort((a, b) => a.display_order - b.display_order)
-                      .map((tier) => (
+                      .sort((a: RewardTier, b: RewardTier) => a.display_order - b.display_order)
+                      .map((tier: RewardTier) => (
                         <div
                           key={tier.id}
                           className="border-2 border-green-200 rounded-2xl p-5 hover:border-green-300 transition-all duration-300 cursor-pointer group hover:shadow-lg bg-gradient-to-br from-white to-green-50/30"
