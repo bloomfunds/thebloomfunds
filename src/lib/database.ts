@@ -179,6 +179,11 @@ export async function getCampaigns(filters?: {
   offset?: number;
 }) {
   try {
+    // If Supabase is not available, use mock data
+    if (!supabase) {
+      return getMockCampaigns(filters);
+    }
+
     let query = supabase.from("campaigns").select("*");
 
     if (filters?.status) {
@@ -246,6 +251,21 @@ function getMockCampaigns(filters?: {
 
 export async function getCampaignById(id: string) {
   try {
+    // If Supabase is not available, use mock data
+    if (!supabase) {
+      const mockCampaign = mockCampaigns.find((c) => c.id === id);
+      if (!mockCampaign) return null;
+
+      const rewardTiers = mockRewardTiers.filter((rt) => rt.campaign_id === id);
+
+      return {
+        ...mockCampaign,
+        reward_tiers: rewardTiers,
+        campaign_media: [],
+        campaign_milestones: [],
+      };
+    }
+
     // Fetch campaign data first
     const { data: campaign, error: campaignError } = await supabase
       .from("campaigns")
@@ -325,6 +345,20 @@ export async function createCampaign(
   >,
 ) {
   try {
+    // If Supabase is not available, use mock implementation
+    if (!supabase) {
+      const newCampaign: Campaign = {
+        ...campaignData,
+        id: `campaign_${Date.now()}`,
+        current_funding: 0,
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString(),
+      };
+
+      mockCampaigns.push(newCampaign);
+      return newCampaign;
+    }
+
     const { data, error } = await supabase
       .from("campaigns")
       .insert({
