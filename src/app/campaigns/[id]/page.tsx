@@ -1,6 +1,7 @@
 import React from "react";
 import { notFound } from "next/navigation";
 import { getCampaignById } from "@/lib/database";
+import { CampaignMedia } from "@/lib/supabase";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -552,7 +553,7 @@ export default async function CampaignPage({ params }: CampaignPageProps) {
                           </h3>
                           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             {campaign.campaign_media
-                              .sort((a, b) => a.display_order - b.display_order)
+                              .sort((a: CampaignMedia, b: CampaignMedia) => a.display_order - b.display_order)
                               .map((media) => (
                                 <div key={media.id} className="space-y-3">
                                   {media.media_type === "image" ? (
