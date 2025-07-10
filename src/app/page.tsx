@@ -28,6 +28,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { getCampaigns } from "@/lib/database";
+import { Campaign } from "@/lib/supabase";
 import TestimonialCarousel from "@/components/ui/testimonial-carousel";
 
 // Typewriter component
@@ -413,7 +414,7 @@ function FloatingIcons() {
 // Main HomePage component
 export default function HomePage() {
   const [isMounted, setIsMounted] = useState(false);
-  const [featuredCampaigns, setFeaturedCampaigns] = useState([]);
+  const [featuredCampaigns, setFeaturedCampaigns] = useState<Campaign[]>([]);
 
   useEffect(() => {
     setIsMounted(true);
